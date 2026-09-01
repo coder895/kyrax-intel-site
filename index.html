@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The beta is invite-only and dark (BETA-PLAN §1): reachable by people we send it to,
+     invisible to search. Remove this when the Phase-2 gates are met, not before. -->
+<meta name="robots" content="noindex, nofollow">
+<title>KYRAX Intel — know who is building</title>
+<meta name="description" content="Building permits in 18 BC and Alberta cities, with the business behind each one.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&family=Spline+Sans+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#f6f6f3; --surface:#fff; --ink:#191d22; --muted:#626b76; --hair:#e3e4df;
+  --ctrl:#c7cac3; --amber:#a86e10; --amber-deep:#7c5109; --good:#157a4a; --select:#eceee7;
+}
+@media (prefers-color-scheme:dark){:root{
+  --paper:#12161c; --surface:#181d24; --ink:#e6e8e3; --muted:#98a1ab; --hair:#2a3038;
+  --ctrl:#3a414a; --amber:#e0a33e; --amber-deep:#f0bd6b; --good:#46b380; --select:#1f252d;
+}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--paper);color:var(--ink);
+  font:400 16px/1.6 'Schibsted Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  -webkit-font-smoothing:antialiased}
+.mono{font-family:'Spline Sans Mono',ui-monospace,SFMono-Regular,Menlo,monospace}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+a{color:var(--amber-deep);text-decoration-thickness:1px;text-underline-offset:2px}
+@media (prefers-color-scheme:dark){a{color:var(--amber-deep)}}
+
+/* masthead */
+header{border-bottom:2px solid var(--ink);padding:20px 0}
+.brand{font-weight:800;letter-spacing:.16em;font-size:14px}
+.brandsub{color:var(--muted);font-size:12.5px;letter-spacing:.04em;margin-top:2px}
+
+/* hero */
+.hero{padding:64px 0 56px;border-bottom:1px solid var(--hair)}
+h1{font-size:clamp(32px,6vw,54px);line-height:1.08;font-weight:800;letter-spacing:-.02em;max-width:15ch}
+.lede{font-size:clamp(17px,2.2vw,20px);color:var(--muted);margin-top:20px;max-width:52ch;line-height:1.55}
+.cta{display:inline-block;margin-top:32px;background:var(--ink);color:var(--paper);
+  padding:15px 28px;font-weight:700;font-size:15px;text-decoration:none;letter-spacing:.01em}
+.cta:hover{background:var(--amber-deep);color:#fff}
+.ctanote{font-size:13px;color:var(--muted);margin-top:14px}
+
+/* sections */
+section{padding:52px 0;border-bottom:1px solid var(--hair)}
+h2{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  padding-bottom:18px;margin-bottom:24px;border-bottom:1px solid var(--hair)}
+h3{font-size:19px;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
+p{max-width:60ch}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:34px}
+.step .num{font-family:'Spline Sans Mono',monospace;font-size:12px;color:var(--amber-deep);
+  font-weight:500;letter-spacing:.1em;margin-bottom:10px}
+.step p{color:var(--muted);font-size:15px}
+
+/* example row */
+.example{border:1px solid var(--hair);background:var(--surface);margin-top:26px}
+.example .tag{font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:.14em;
+  color:var(--muted);background:var(--select);padding:6px 14px;border-bottom:1px solid var(--hair)}
+.exrow{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:baseline;padding:16px 14px}
+.exrow b{font-size:16px}
+.exrow span{color:var(--muted);font-size:14px}
+.exrow .val{font-family:'Spline Sans Mono',monospace;color:var(--ink)}
+.exact{display:flex;gap:8px;flex-wrap:wrap;padding:0 14px 16px}
+.exact i{font-style:normal;border:1px solid var(--ctrl);padding:5px 12px;font-size:12px;
+  font-weight:600;letter-spacing:.03em}
+
+/* coverage table */
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:440px}
+th{text-align:left;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+  font-weight:600;padding:0 14px 9px 0;border-bottom:1px solid var(--ctrl)}
+td{padding:9px 14px 9px 0;border-bottom:1px solid var(--hair)}
+td.n{font-family:'Spline Sans Mono',monospace;text-align:right;white-space:nowrap}
+tr.prov td{padding-top:22px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--amber-deep);font-weight:700;border-bottom:1px solid var(--ctrl)}
+.thin{color:var(--muted)}
+.note{font-size:13.5px;color:var(--muted);margin-top:18px;max-width:66ch;line-height:1.55}
+
+/* honesty list */
+.honest{display:grid;gap:20px;max-width:64ch}
+.honest div{padding-left:18px;border-left:2px solid var(--ctrl)}
+.honest b{display:block;margin-bottom:3px}
+.honest span{color:var(--muted);font-size:15px}
+
+/* access */
+.access{background:var(--surface);border:1px solid var(--ctrl);padding:34px 30px;margin-top:8px}
+footer{padding:34px 0 60px;font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header><div class="wrap">
+  <div class="brand">KYRAX INTEL</div>
+  <div class="brandsub">Building permits, and the businesses behind them — BC &amp; Alberta</div>
+</div></header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>Know who is building. Call them first.</h1>
+    <p class="lede">Every week, hundreds of building permits are issued across BC and Alberta.
+    Each one is a job that needs materials. We show you the permit, the business that pulled it,
+    and how to reach them — while the job is still being planned.</p>
+    <a class="cta" href="#access">Ask for beta access</a>
+    <div class="ctanote">Invite-only right now. We onboard a few branches at a time.</div>
+  </div>
+
+  <section>
+    <h2>How it works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <h3>A permit is issued</h3>
+        <p>The city publishes it. We pick it up — usually 2 to 3 days later, and we always
+        show you the date so you know how fresh it is.</p>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <h3>We find the business</h3>
+        <p>Not just a name on a form. We match it to a company, its permit history, and a
+        business phone or email where public records have one.</p>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <h3>You make the call</h3>
+        <p>One tap to call or text. Or open a ready-written email and change it how you like.
+        <b>You send it — never us.</b></p>
+      </div>
+    </div>
+
+    <div class="example">
+      <div class="tag">EXAMPLE — WHAT ONE ROW LOOKS LIKE</div>
+      <div class="exrow">
+        <b>1234 Example Street</b>
+        <span class="val">Burnaby</span>
+        <span>New 4-plex</span>
+        <span class="val">$1,240,000</span>
+        <span>issued <span class="val">Aug 27</span></span>
+      </div>
+      <div class="exrow" style="padding-top:0">
+        <span>Builder: <b>Example Construction Ltd.</b> — 34 permits on record</span>
+      </div>
+      <div class="exact">
+        <i>CALL</i><i>TEXT</i><i>EMAIL DRAFT</i><i>ADD SITE VISIT</i><i>REMIND ME</i>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Where we have data — and how much</h2>
+    <p>Most services will not tell you this. We will, because a thin city is worth knowing
+    about <em>before</em> you pay us, not after.</p>
+    <div class="tablewrap"><table>
+      <tr><th>City</th><th style="text-align:right">New permits per week</th><th style="text-align:right">On record</th></tr>
+      <tr class="prov"><td colspan="3">Alberta</td></tr>
+      <tr><td>Calgary</td><td class="n">≈710</td><td class="n">314,799</td></tr>
+      <tr><td>Edmonton</td><td class="n">≈466</td><td class="n">185,364</td></tr>
+      <tr class="prov"><td colspan="3">British Columbia</td></tr>
+      <tr><td>Vancouver</td><td class="n">≈73</td><td class="n">51,855</td></tr>
+      <tr><td>Maple Ridge</td><td class="n">≈57</td><td class="n">66,872</td></tr>
+      <tr><td>Surrey</td><td class="n">≈38</td><td class="n">9,722</td></tr>
+      <tr><td>Langley (Township)</td><td class="n">≈26</td><td class="n">922</td></tr>
+      <tr><td>Burnaby</td><td class="n">≈20</td><td class="n">255</td></tr>
+      <tr><td>Port Coquitlam</td><td class="n">≈10</td><td class="n">130</td></tr>
+      <tr><td>New Westminster</td><td class="n">≈6</td><td class="n">2,807</td></tr>
+      <tr><td>Chilliwack</td><td class="n">≈6</td><td class="n">611</td></tr>
+      <tr><td>North Vancouver (District)</td><td class="n">≈5</td><td class="n">61</td></tr>
+      <tr><td>Coquitlam</td><td class="n">≈3</td><td class="n">519</td></tr>
+      <tr><td>Port Moody</td><td class="n">≈3</td><td class="n">3,022</td></tr>
+      <tr><td>North Vancouver (City)</td><td class="n">≈2</td><td class="n">2,091</td></tr>
+      <tr class="thin"><td>Abbotsford, Delta, Richmond, Mission</td><td class="n">—</td><td class="n">3,226</td></tr>
+    </table></div>
+    <p class="note">Weekly figures are the recent average over the last 90 days, so they move with
+    the season. The last row is the honest exception: we hold those records, but those cities
+    publish permits <b>without dates</b>, so we cannot tell you which ones are new. Every city
+    page in the app shows its own "data through" date, and the app tells you on screen when
+    the data has stopped arriving.</p>
+  </section>
+
+  <section>
+    <h2>What we will not do</h2>
+    <div class="honest">
+      <div><b>We do not claim to be real-time.</b>
+        <span>Cities publish on their own schedule — some daily, some every two weeks. We show
+        you the date on every record instead of pretending.</span></div>
+      <div><b>We do not sell personal information.</b>
+        <span>Contact details are business lines drawn from public registers. Where a permit was
+        filed by a person rather than a company, we show you no contact at all.</span></div>
+      <div><b>We do not email builders for you.</b>
+        <span>We write the draft; it opens in your own email or phone. You decide what to send
+        and you are the sender.</span></div>
+      <div><b>We remove businesses that ask.</b>
+        <span>One request and the contact card is gone everywhere, immediately. We sort out the
+        details afterwards.</span></div>
+    </div>
+  </section>
+
+  <section id="access">
+    <h2>Beta access</h2>
+    <div class="access">
+      <h3 style="font-size:22px">We are onboarding a few branches at a time.</h3>
+      <p style="color:var(--muted);margin-top:10px">The beta is invite-only. If you supply
+      builders in any of the cities above — lumber, concrete, excavation, windows, finishing —
+      tell us your trade and your territory and we will tell you honestly whether the data is
+      good enough in your area to be worth your time.</p>
+      <a class="cta" id="contact-cta" href="mailto:CHANGE-ME@example.com?subject=KYRAX%20Intel%20beta%20access&amp;body=Company%3A%0ATrade%3A%0ACities%20you%20cover%3A%0A">Ask for beta access</a>
+      <div class="ctanote">We reply to every message, including the ones where the answer is
+      "not yet in your area."</div>
+    </div>
+  </section>
+
+  <footer>
+    <div>KYRAX Intel — permit data republished from municipal registers and other official
+    public sources. We never claim real-time coverage.</div>
+    <div style="margin-top:10px">Are you a business listed here and want to be removed?
+    <a href="mailto:CHANGE-ME@example.com?subject=Removal%20request">Email us</a> and we will
+    remove you first and ask questions after.</div>
+  </footer>
+
+</div>
+</body>
+</html>
